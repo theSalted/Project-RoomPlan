@@ -12,20 +12,31 @@ struct ContentView: View {
     @StateObject var roomCaptureViewModel = RoomCaptureViewModel()
     
     var body: some View {
-        #if !(canImport(RoomPlan) && targetEnvironment(simulator))
-        ZStack {
-            Text("Something went wrong while trying load this room capture experience.")
+        VStack {
+            #if !(canImport(RoomPlan) && targetEnvironment(simulator))
             RoomCaptureRepresentableView(viewModel: roomCaptureViewModel)
                 .ignoresSafeArea()
                 .onAppear {
                     roomCaptureViewModel.actions
                         .send(.startSession)
                 }
+            #else
+            Text("Room Capture API is not supported on your device.")
+                .padding()
+            #endif
         }
-        #else
-        Text("Room Capture API is not supported on your device.")
-            .padding()
-        #endif
+        .frame(maxHeight: .infinity)
+        .overlay(alignment: .bottomTrailing) {
+            if roomCaptureViewModel.canExport {
+                Button {
+                    roomCaptureViewModel.actions.send(.export)
+                } label: {
+                    ButtonLabel(systemName: "square.and.arrow.up")
+                }
+                .padding()
+                .foregroundStyle(.secondary)
+            }
+        }
     }
 }
 

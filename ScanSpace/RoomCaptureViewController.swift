@@ -75,7 +75,9 @@ extension RoomCaptureViewController : RoomCaptureSessionDelegate {
     func captureSession(_ session: RoomCaptureSession, didUpdate room: CapturedRoom) {
         capturedRoom = room
         DispatchQueue.main.async {
-            self.viewModel.canExport = true
+            withAnimation {
+                self.viewModel.canExport = true
+            }
         }
     }
 }

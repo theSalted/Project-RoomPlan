@@ -13,6 +13,7 @@
 		8E7AC2AE2B459F7D009873E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7AC2AD2B459F7D009873E3 /* Preview Assets.xcassets */; };
 		8EB117BE2B486292001710FF /* RoomCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */; };
 		8EB117C02B486335001710FF /* RoomCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */; };
+		8EB117C22B487DE4001710FF /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB117C12B487DE4001710FF /* ButtonLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		8E7AC2AD2B459F7D009873E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCaptureViewController.swift; sourceTree = "<group>"; };
 		8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCaptureViewModel.swift; sourceTree = "<group>"; };
+		8EB117C12B487DE4001710FF /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				8E7AC2A62B459F7B009873E3 /* ContentView.swift */,
 				8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */,
 				8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */,
+				8EB117C12B487DE4001710FF /* ButtonLabel.swift */,
 				8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */,
 				8E7AC2AC2B459F7D009873E3 /* Preview Content */,
 			);
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */,
+				8EB117C22B487DE4001710FF /* ButtonLabel.swift in Sources */,
 				8E7AC2A52B459F7B009873E3 /* ScanSpaceApp.swift in Sources */,
 				8EB117C02B486335001710FF /* RoomCaptureViewModel.swift in Sources */,
 				8EB117BE2B486292001710FF /* RoomCaptureViewController.swift in Sources */,
