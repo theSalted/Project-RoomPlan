@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct ScanSpaceApp: App {
+    static let bundleId = "app.yuhao.ScanSpace"
     var body: some Scene {
         WindowGroup {
             ContentView()
