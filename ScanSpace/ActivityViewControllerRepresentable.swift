@@ -17,7 +17,7 @@ import SwiftUI
 /// See [UIActivityViewController](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller)
 struct ActivityViewControllerRepresentable: UIViewControllerRepresentable {
     var items: [Any]
-    var activities : [UIActivity]
+    var activities : [UIActivity]?
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let controller = UIActivityViewController(activityItems: items, applicationActivities: activities)

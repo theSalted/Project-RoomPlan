@@ -68,6 +68,9 @@ class RoomCaptureViewController: UIViewController {
         } catch {
             logger.warning("Error when exporting room scan to usdz \(error)")
         }
+        withAnimation {
+            viewModel.showShareSheet = true
+        }
     }
 }
 

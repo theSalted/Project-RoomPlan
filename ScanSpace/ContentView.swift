@@ -20,6 +20,9 @@ struct ContentView: View {
                     roomCaptureViewModel.actions
                         .send(.startSession)
                 }
+                .sheet(isPresented: $roomCaptureViewModel.showShareSheet) {
+                    ActivityViewControllerRepresentable(items: [roomCaptureViewModel.exportUrl])
+                }
             #else
             Text("Room Capture API is not supported on your device.")
                 .padding()
