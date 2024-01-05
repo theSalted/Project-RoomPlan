@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8E7AC2A52B459F7B009873E3 /* ScanSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */; };
 		8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AC2A62B459F7B009873E3 /* ContentView.swift */; };
-		8E7AC2A92B459F7B009873E3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AC2A82B459F7B009873E3 /* Item.swift */; };
 		8E7AC2AB2B459F7D009873E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */; };
 		8E7AC2AE2B459F7D009873E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7AC2AD2B459F7D009873E3 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -18,7 +17,6 @@
 		8E7AC2A12B459F7B009873E3 /* ScanSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSpaceApp.swift; sourceTree = "<group>"; };
 		8E7AC2A62B459F7B009873E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8E7AC2A82B459F7B009873E3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E7AC2AD2B459F7D009873E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,7 +53,6 @@
 			children = (
 				8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */,
 				8E7AC2A62B459F7B009873E3 /* ContentView.swift */,
-				8E7AC2A82B459F7B009873E3 /* Item.swift */,
 				8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */,
 				8E7AC2AC2B459F7D009873E3 /* Preview Content */,
 			);
@@ -141,7 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */,
-				8E7AC2A92B459F7B009873E3 /* Item.swift in Sources */,
 				8E7AC2A52B459F7B009873E3 /* ScanSpaceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +275,7 @@
 				DEVELOPMENT_TEAM = 52JMW2697M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Needed for AR";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -308,6 +305,7 @@
 				DEVELOPMENT_TEAM = 52JMW2697M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Needed for AR";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
