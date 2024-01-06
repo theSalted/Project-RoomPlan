@@ -11,6 +11,8 @@
 		8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AC2A62B459F7B009873E3 /* ContentView.swift */; };
 		8E7AC2AB2B459F7D009873E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */; };
 		8E7AC2AE2B459F7D009873E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7AC2AD2B459F7D009873E3 /* Preview Assets.xcassets */; };
+		8EADA24B2B4983DE00F0B21D /* ModelViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADA24A2B4983DE00F0B21D /* ModelViewer.swift */; };
+		8EADA24D2B498D4800F0B21D /* ModelViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADA24C2B498D4800F0B21D /* ModelViewerView.swift */; };
 		8EB117BE2B486292001710FF /* RoomCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */; };
 		8EB117C02B486335001710FF /* RoomCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */; };
 		8EB117C22B487DE4001710FF /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB117C12B487DE4001710FF /* ButtonLabel.swift */; };
@@ -23,6 +25,8 @@
 		8E7AC2A62B459F7B009873E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E7AC2AD2B459F7D009873E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8EADA24A2B4983DE00F0B21D /* ModelViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewer.swift; sourceTree = "<group>"; };
+		8EADA24C2B498D4800F0B21D /* ModelViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewerView.swift; sourceTree = "<group>"; };
 		8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCaptureViewController.swift; sourceTree = "<group>"; };
 		8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCaptureViewModel.swift; sourceTree = "<group>"; };
 		8EB117C12B487DE4001710FF /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 			children = (
 				8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */,
 				8E7AC2A62B459F7B009873E3 /* ContentView.swift */,
+				8EADA24A2B4983DE00F0B21D /* ModelViewer.swift */,
+				8EADA24C2B498D4800F0B21D /* ModelViewerView.swift */,
 				8EE0A1052B48895000683C26 /* ActivityViewControllerRepresentable.swift */,
 				8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */,
 				8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */,
@@ -151,9 +157,11 @@
 			files = (
 				8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */,
 				8EB117C22B487DE4001710FF /* ButtonLabel.swift in Sources */,
+				8EADA24B2B4983DE00F0B21D /* ModelViewer.swift in Sources */,
 				8EE0A1062B48895000683C26 /* ActivityViewControllerRepresentable.swift in Sources */,
 				8E7AC2A52B459F7B009873E3 /* ScanSpaceApp.swift in Sources */,
 				8EB117C02B486335001710FF /* RoomCaptureViewModel.swift in Sources */,
+				8EADA24D2B498D4800F0B21D /* ModelViewerView.swift in Sources */,
 				8EB117BE2B486292001710FF /* RoomCaptureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,10 +7,13 @@
 
 import SwiftUI
 import SwiftData
+import SceneKit.ModelIO
+import OSLog
 
 struct ContentView: View {
     @StateObject var roomCaptureViewModel = RoomCaptureViewModel()
-    
+    @State var modelViewerViewModel = ModelViewerViewModel()
+    let logger = Logger(subsystem: ScanSpaceApp.bundleId, category: "ContentView")
     var body: some View {
         VStack {
             #if !(canImport(RoomPlan) && targetEnvironment(simulator))
@@ -23,6 +26,15 @@ struct ContentView: View {
                 .sheet(isPresented: $roomCaptureViewModel.showShareSheet) {
                     ActivityViewControllerRepresentable(items: [roomCaptureViewModel.exportUrl])
                 }
+                .sheet(isPresented: $roomCaptureViewModel.showRoomViewer) {
+                    ModelViewerView()
+                        .environment(modelViewerViewModel)
+                        .onAppear {
+                            let asset = MDLAsset(url: roomCaptureViewModel.exportUrl)
+                            asset.loadTextures()
+                            modelViewerViewModel.scene?.rootNode.addChildNode(SCNNode(mdlObject: asset.object(at: 0)))
+                        }
+                }
             #else
             Text("Room Capture API is not supported on your device.")
                 .padding()
@@ -30,15 +42,26 @@ struct ContentView: View {
         }
         .frame(maxHeight: .infinity)
         .overlay(alignment: .bottomTrailing) {
-            if roomCaptureViewModel.canExport {
+            HStack {
                 Button {
                     roomCaptureViewModel.actions.send(.export)
                 } label: {
                     ButtonLabel(systemName: "square.and.arrow.up")
                 }
-                .padding()
+                .foregroundStyle(.secondary)
+                .disabled(!roomCaptureViewModel.canExport)
+                
+                Button {
+                    withAnimation {
+                        roomCaptureViewModel.showRoomViewer = true
+                    }
+                } label: {
+                    ButtonLabel(systemName: "cube")
+                }
                 .foregroundStyle(.secondary)
             }
+            .padding()
+            
         }
     }
 }
@@ -46,3 +69,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+

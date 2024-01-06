@@ -19,4 +19,5 @@ class RoomCaptureViewModel: ObservableObject {
     
     @Published var canExport = false
     @Published var showShareSheet = false
+    @Published var showRoomViewer = false
 }

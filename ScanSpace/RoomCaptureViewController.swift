@@ -11,6 +11,34 @@ import SwiftUI
 import UIKit
 import OSLog
 
+// For RoomMapper
+import simd
+
+struct RoomMapper {
+    var room : CapturedRoom
+    
+    func exportToSpriteKitMap() {
+        
+    }
+    
+    /// Convert simd\_float3 vector from RoomPlan scans to CGPoint
+    func convertToCGPoint(from vector: simd_float3, discarding axis: Vector3DAxis = .z) -> CGPoint {
+        switch axis {
+            case .x:
+                return CGPoint(x: CGFloat(vector.y), y: CGFloat(vector.z))
+            case .y:
+                return CGPoint(x: CGFloat(vector.x), y: CGFloat(vector.z))
+            case .z:
+                return CGPoint(x: CGFloat(vector.x), y: CGFloat(vector.y))
+            }
+    }
+    
+    /// A helper axis enum for simd\_float3d
+    enum Vector3DAxis {
+        case x, y, z
+    }
+}
+
 class RoomCaptureViewController: UIViewController {
     private let logger = Logger(subsystem: ScanSpaceApp.bundleId, category: "RoomCaptureViewController")
     private var cancellables: Set<AnyCancellable> = []
