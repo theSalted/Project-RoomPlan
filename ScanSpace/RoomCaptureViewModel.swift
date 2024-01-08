@@ -7,10 +7,12 @@
 
 import Combine
 import Foundation
+import RoomPlan
 
 class RoomCaptureViewModel: ObservableObject {
     enum Action {
         case startSession
+        case share
         case export
     }
     
@@ -20,4 +22,5 @@ class RoomCaptureViewModel: ObservableObject {
     @Published var canExport = false
     @Published var showShareSheet = false
     @Published var showRoomViewer = false
+    @Published var capturedRoom: CapturedRoom?
 }

@@ -30,6 +30,7 @@ struct ContentView: View {
                     ModelViewerView()
                         .environment(modelViewerViewModel)
                         .onAppear {
+                            roomCaptureViewModel.actions.send(.export)
                             let asset = MDLAsset(url: roomCaptureViewModel.exportUrl)
                             asset.loadTextures()
                             let object = asset.object(at: 0)
@@ -46,7 +47,7 @@ struct ContentView: View {
         .overlay(alignment: .bottomTrailing) {
             HStack {
                 Button {
-                    roomCaptureViewModel.actions.send(.export)
+                    roomCaptureViewModel.actions.send(.share)
                 } label: {
                     ButtonLabel(systemName: "square.and.arrow.up")
                 }

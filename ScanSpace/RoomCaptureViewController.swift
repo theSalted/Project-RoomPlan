@@ -44,7 +44,6 @@ class RoomCaptureViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     private var viewModel: RoomCaptureViewModel
     private var roomCaptureView: RoomCaptureView?
-    private var capturedRoom: CapturedRoom?
     
     init(viewModel: RoomCaptureViewModel) {
         self.viewModel = viewModel
@@ -78,6 +77,8 @@ class RoomCaptureViewController: UIViewController {
                 switch action {
                 case .startSession:
                     self?.startSession()
+                case .share:
+                    self?.shareModel()
                 case .export:
                     self?.exportModel()
                 }
@@ -92,10 +93,14 @@ class RoomCaptureViewController: UIViewController {
     
     private func exportModel() {
         do {
-            try capturedRoom?.export(to: viewModel.exportUrl)
+            try viewModel.capturedRoom?.export(to: viewModel.exportUrl)
         } catch {
             logger.warning("Error when exporting room scan to usdz \(error)")
         }
+    }
+    
+    private func shareModel() {
+        exportModel()
         withAnimation {
             viewModel.showShareSheet = true
         }
@@ -104,7 +109,7 @@ class RoomCaptureViewController: UIViewController {
 
 extension RoomCaptureViewController : RoomCaptureSessionDelegate {
     func captureSession(_ session: RoomCaptureSession, didUpdate room: CapturedRoom) {
-        capturedRoom = room
+        viewModel.capturedRoom = room
         DispatchQueue.main.async {
             withAnimation {
                 self.viewModel.canExport = true
