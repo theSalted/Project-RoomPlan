@@ -32,7 +32,9 @@ struct ContentView: View {
                         .onAppear {
                             let asset = MDLAsset(url: roomCaptureViewModel.exportUrl)
                             asset.loadTextures()
-                            modelViewerViewModel.scene?.rootNode.addChildNode(SCNNode(mdlObject: asset.object(at: 0)))
+                            let object = asset.object(at: 0)
+                            let node = SCNNode(mdlObject: object)
+                            modelViewerViewModel.modelNode = node
                         }
                 }
             #else
