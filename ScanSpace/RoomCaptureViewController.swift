@@ -91,11 +91,26 @@ class RoomCaptureViewController: UIViewController {
         roomCaptureView?.captureSession.run(configuration: sessionConfig)
     }
     
+    
     private func exportModel() {
+        exportMetadata()
         do {
-            try viewModel.capturedRoom?.export(to: viewModel.exportUrl)
+            try viewModel.capturedRoom?.export(to: viewModel.exportUrl, metadataURL: viewModel.metadataUrl)
         } catch {
             logger.warning("Error when exporting room scan to usdz \(error)")
+        }
+    }
+    
+    private func exportMetadata() {
+        do {
+            guard let room = viewModel.capturedRoom else {
+                return
+            }
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(room)
+            try data.write(to: viewModel.metadataUrl)
+        } catch {
+            logger.warning("Error when exporting meta data")
         }
     }
     

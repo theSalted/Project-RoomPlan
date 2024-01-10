@@ -8,6 +8,7 @@
 import SwiftUI
 import SceneKit
 import OSLog
+import ModelIO
 
 @Observable
 class ModelViewerViewModel {
@@ -57,7 +58,6 @@ struct ModelViewerView: View {
         } else {
             Text("Couldn't view model")
         }
-        
     }
 }
 

@@ -9,10 +9,17 @@ import SwiftUI
 import SwiftData
 import SceneKit.ModelIO
 import OSLog
+import RoomPlan
 
 struct ContentView: View {
     @StateObject var roomCaptureViewModel = RoomCaptureViewModel()
     @State var modelViewerViewModel = ModelViewerViewModel()
+    @State var showSpaceObjectViewer = false
+    @State var showTransformView = false
+    @State var captureTransforms = [simd_float4x4]()
+    @State var nodeTransforms = [simd_float4x4]()
+    @State var spaceObjects = [SpaceObject]()
+    
     let logger = Logger(subsystem: ScanSpaceApp.bundleId, category: "ContentView")
     var body: some View {
         VStack {
@@ -29,6 +36,14 @@ struct ContentView: View {
                 .sheet(isPresented: $roomCaptureViewModel.showRoomViewer) {
                     ModelViewerView()
                         .environment(modelViewerViewModel)
+//                        .onChange(of: roomCaptureViewModel.capturedRoom) {
+//                            roomCaptureViewModel.actions.send(.export)
+//                            let asset = MDLAsset(url: roomCaptureViewModel.exportUrl)
+//                            asset.loadTextures()
+//                            let object = asset.object(at: 0)
+//                            let node = SCNNode(mdlObject: object)
+//                            modelViewerViewModel.modelNode = node
+//                        }
                         .onAppear {
                             roomCaptureViewModel.actions.send(.export)
                             let asset = MDLAsset(url: roomCaptureViewModel.exportUrl)
@@ -37,6 +52,56 @@ struct ContentView: View {
                             let node = SCNNode(mdlObject: object)
                             modelViewerViewModel.modelNode = node
                         }
+                }
+                .sheet(isPresented: $showSpaceObjectViewer) {
+                    SpaceObjectViewerView(spaceObjects: spaceObjects)
+                        .onAppear {
+                            guard let childNodes = modelViewerViewModel.modelNode?.childNodes,
+                                  let objectNodes = childNodes.filter({ $0.name == "Mesh_grp"}).first?.childNodes.filter({ $0.name == "Object_grp"}),
+                                  let roomplanObjects = roomCaptureViewModel.capturedRoom?.objects
+                            else {
+                                return
+                            }
+                            let SCNNodeSIMDTransforms = objectNodes.map { $0.simdTransform }
+                            for object in roomplanObjects {
+                                let closestSCNNodeSIMDTransform = closestTransform(to: object.transform, from: SCNNodeSIMDTransforms)
+                                if let closestSCNNode = objectNodes.filter({ $0.simdTransform == closestSCNNodeSIMDTransform }).first {
+                                    spaceObjects.append(SpaceObject(roomPlanObject: object, sceneNode: closestSCNNode))
+                                } else {
+                                    spaceObjects.append(SpaceObject(roomPlanObject: object))
+                                }
+                                
+                            }
+                        }
+                }
+                .sheet(isPresented: $showTransformView) {
+                    VStack {
+                        Text("Capture")
+                        TransformsViewer(simdTransforms: captureTransforms)
+                        Text("Node")
+                        TransformsViewer(simdTransforms: nodeTransforms)
+                    }
+                    .onAppear {
+                        guard let childNodes = modelViewerViewModel.modelNode?.childNodes else {
+                            return
+                        }
+                        let meshNodes = childNodes.filter { $0.name == "Mesh_grp" }
+                        let objectNodes = meshNodes.first!.childNodes.filter { $0.name == "Object_grp"}
+                        var flattenedNodes = [SCNNode]()
+                        flattenNodes(from: objectNodes, to: &flattenedNodes)
+                        
+                        flattenedNodes = flattenedNodes.filter {
+                            let isGroup = $0.name?.contains("grp") ?? false
+                            return !isGroup
+                        }
+                        
+                        nodeTransforms = flattenedNodes.map { $0.simdTransform }
+                        guard let objects = roomCaptureViewModel.capturedRoom?.objects else {
+                            return
+                        }
+                        captureTransforms = objects.map { $0.transform }
+                        
+                    }
                 }
             #else
             Text("Room Capture API is not supported on your device.")
@@ -62,6 +127,24 @@ struct ContentView: View {
                     ButtonLabel(systemName: "cube")
                 }
                 .foregroundStyle(.secondary)
+                
+                Button {
+                    withAnimation {
+                       showSpaceObjectViewer = true
+                    }
+                } label: {
+                    ButtonLabel(systemName: "heart")
+                }
+                .foregroundStyle(.secondary)
+                
+                Button {
+                    withAnimation {
+                       showTransformView = true
+                    }
+                } label: {
+                    ButtonLabel(systemName: "star")
+                }
+                .foregroundStyle(.secondary)
             }
             .padding()
             
@@ -69,7 +152,15 @@ struct ContentView: View {
     }
 }
 
+func flattenNodes(from input: [SCNNode], to output: inout [SCNNode]) {
+    for node in input {
+        output.append(node)
+        if !node.childNodes.isEmpty {
+            flattenNodes(from: node.childNodes, to: &output)
+        }
+    }
+}
+
 #Preview {
     ContentView()
 }
-

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E02A73D2B4EE7210025D7E0 /* RoomObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02A73C2B4EE7210025D7E0 /* RoomObjectsView.swift */; };
+		8E02A73F2B4F04540025D7E0 /* TransformsViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02A73E2B4F04540025D7E0 /* TransformsViewer.swift */; };
+		8E02A7412B4F19820025D7E0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02A7402B4F19820025D7E0 /* Utils.swift */; };
+		8E02A7432B4F1A550025D7E0 /* SpaceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02A7422B4F1A550025D7E0 /* SpaceObject.swift */; };
+		8E02A7472B4F1F6E0025D7E0 /* SpaceObjectViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02A7462B4F1F6E0025D7E0 /* SpaceObjectViewerView.swift */; };
 		8E7AC2A52B459F7B009873E3 /* ScanSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */; };
 		8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AC2A62B459F7B009873E3 /* ContentView.swift */; };
 		8E7AC2AB2B459F7D009873E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */; };
@@ -20,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E02A73C2B4EE7210025D7E0 /* RoomObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomObjectsView.swift; sourceTree = "<group>"; };
+		8E02A73E2B4F04540025D7E0 /* TransformsViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformsViewer.swift; sourceTree = "<group>"; };
+		8E02A7402B4F19820025D7E0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8E02A7422B4F1A550025D7E0 /* SpaceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceObject.swift; sourceTree = "<group>"; };
+		8E02A7462B4F1F6E0025D7E0 /* SpaceObjectViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceObjectViewerView.swift; sourceTree = "<group>"; };
 		8E7AC2A12B459F7B009873E3 /* ScanSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSpaceApp.swift; sourceTree = "<group>"; };
 		8E7AC2A62B459F7B009873E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,11 +75,16 @@
 			children = (
 				8E7AC2A42B459F7B009873E3 /* ScanSpaceApp.swift */,
 				8E7AC2A62B459F7B009873E3 /* ContentView.swift */,
+				8E02A7402B4F19820025D7E0 /* Utils.swift */,
+				8E02A73C2B4EE7210025D7E0 /* RoomObjectsView.swift */,
+				8E02A73E2B4F04540025D7E0 /* TransformsViewer.swift */,
 				8EADA24A2B4983DE00F0B21D /* ModelViewer.swift */,
 				8EADA24C2B498D4800F0B21D /* ModelViewerView.swift */,
 				8EE0A1052B48895000683C26 /* ActivityViewControllerRepresentable.swift */,
 				8EB117BD2B486292001710FF /* RoomCaptureViewController.swift */,
 				8EB117BF2B486335001710FF /* RoomCaptureViewModel.swift */,
+				8E02A7422B4F1A550025D7E0 /* SpaceObject.swift */,
+				8E02A7462B4F1F6E0025D7E0 /* SpaceObjectViewerView.swift */,
 				8EB117C12B487DE4001710FF /* ButtonLabel.swift */,
 				8E7AC2AA2B459F7D009873E3 /* Assets.xcassets */,
 				8E7AC2AC2B459F7D009873E3 /* Preview Content */,
@@ -156,13 +171,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7AC2A72B459F7B009873E3 /* ContentView.swift in Sources */,
+				8E02A73F2B4F04540025D7E0 /* TransformsViewer.swift in Sources */,
 				8EB117C22B487DE4001710FF /* ButtonLabel.swift in Sources */,
+				8E02A7432B4F1A550025D7E0 /* SpaceObject.swift in Sources */,
 				8EADA24B2B4983DE00F0B21D /* ModelViewer.swift in Sources */,
 				8EE0A1062B48895000683C26 /* ActivityViewControllerRepresentable.swift in Sources */,
 				8E7AC2A52B459F7B009873E3 /* ScanSpaceApp.swift in Sources */,
 				8EB117C02B486335001710FF /* RoomCaptureViewModel.swift in Sources */,
+				8E02A7412B4F19820025D7E0 /* Utils.swift in Sources */,
+				8E02A7472B4F1F6E0025D7E0 /* SpaceObjectViewerView.swift in Sources */,
 				8EADA24D2B498D4800F0B21D /* ModelViewerView.swift in Sources */,
 				8EB117BE2B486292001710FF /* RoomCaptureViewController.swift in Sources */,
+				8E02A73D2B4EE7210025D7E0 /* RoomObjectsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
