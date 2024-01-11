@@ -57,7 +57,7 @@ struct ContentView: View {
                     SpaceObjectViewerView(spaceObjects: spaceObjects)
                         .onAppear {
                             guard let childNodes = modelViewerViewModel.modelNode?.childNodes,
-                                  let objectNodes = childNodes.filter({ $0.name == "Mesh_grp"}).first?.childNodes.filter({ $0.name == "Object_grp"}),
+                                  let objectNodes = childNodes.filter({ $0.name == "Mesh_grp"}).first?.childNodes.filter({ $0.name == "Object_grp"}).first?.childNodes,
                                   let roomplanObjects = roomCaptureViewModel.capturedRoom?.objects
                             else {
                                 return

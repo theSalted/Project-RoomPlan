@@ -38,9 +38,11 @@ func pairClosestNodesObjects(nodes: [SCNNode], objects : [CapturedRoom.Object]) 
         }
         for node in nodes {
             let nodeTransform = node.simdTransform
+            print(nodeTransform.debugDescription)
             if simd_almost_equal_elements(nodeTransform, objectTransform, bestTolerance) {
                 let matrixDiff = objectTransform - nodeTransform
                 bestTolerance = simd_float4x4_maxMag(matrixDiff)
+                print(nodeTransform.debugDescription)
                 closestNode = node
             }
         }
