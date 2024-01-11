@@ -62,15 +62,11 @@ struct ContentView: View {
                             else {
                                 return
                             }
-                            let SCNNodeSIMDTransforms = objectNodes.map { $0.simdTransform }
-                            for object in roomplanObjects {
-                                let closestSCNNodeSIMDTransform = closestTransform(to: object.transform, from: SCNNodeSIMDTransforms)
-                                if let closestSCNNode = objectNodes.filter({ $0.simdTransform == closestSCNNodeSIMDTransform }).first {
-                                    spaceObjects.append(SpaceObject(roomPlanObject: object, sceneNode: closestSCNNode))
-                                } else {
-                                    spaceObjects.append(SpaceObject(roomPlanObject: object))
-                                }
-                                
+                            
+                            let nodeObjectPairs = pairClosestNodesObjects(nodes: objectNodes, objects: roomplanObjects)
+                            
+                            spaceObjects = nodeObjectPairs.map{
+                                SpaceObject(roomPlanObject: $0.1, sceneNode: $0.0)
                             }
                         }
                 }
