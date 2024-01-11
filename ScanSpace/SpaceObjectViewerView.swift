@@ -24,7 +24,7 @@ struct SpaceObjectViewerView: View {
                 Label("Valid sceneNode", systemImage: "gamecontroller")
                     .foregroundStyle(object.sceneNode != nil ? .green : .red)
                     .font(.caption)
-                if let nodeTransform = object.sceneNode?.simdTransform {
+                if let nodeTransform = object.sceneNode?.simdWorldPosition {
                     Text(nodeTransform.debugDescription)
                         .font(.caption)
                 }

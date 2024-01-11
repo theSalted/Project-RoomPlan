@@ -51,21 +51,28 @@ struct ContentView: View {
                             let object = asset.object(at: 0)
                             let node = SCNNode(mdlObject: object)
                             modelViewerViewModel.modelNode = node
+                            let test = node.childNodes[0].childNodes[2].childNodes.first!
                         }
                 }
                 .sheet(isPresented: $showSpaceObjectViewer) {
                     SpaceObjectViewerView(spaceObjects: spaceObjects)
                         .onAppear {
                             guard let childNodes = modelViewerViewModel.modelNode?.childNodes,
-                                  let objectNodes = childNodes.filter({ $0.name == "Mesh_grp"}).first?.childNodes.filter({ $0.name == "Object_grp"}).first?.childNodes,
-                                  let roomplanObjects = roomCaptureViewModel.capturedRoom?.objects
-                            else {
+                                  let meshNode = childNodes.filter({ $0.name == "Mesh_grp" }).first else {
                                 return
                             }
-                            
-                            let nodeObjectPairs = pairClosestNodesObjects(nodes: objectNodes, objects: roomplanObjects)
-                            
-                            spaceObjects = nodeObjectPairs.map{
+                            let objectNodes = meshNode.childNodes.filter { $0.name == "Object_grp"}
+                            var flattenedNodes = [SCNNode]()
+                            flattenNodes(from: objectNodes, to: &flattenedNodes)
+                            flattenedNodes = flattenedNodes.filter {
+                                let isGroup = $0.name?.contains("grp") ?? false
+                                return !isGroup
+                            }
+                            let nodes = flattenedNodes
+                            guard let objects = roomCaptureViewModel.capturedRoom?.objects else {
+                                return
+                            }
+                            spaceObjects = pairClosestNodesObjects(nodes: nodes, objects: objects).map {
                                 SpaceObject(roomPlanObject: $0.1, sceneNode: $0.0)
                             }
                         }
@@ -78,20 +85,18 @@ struct ContentView: View {
                         TransformsViewer(simdTransforms: nodeTransforms)
                     }
                     .onAppear {
-                        guard let childNodes = modelViewerViewModel.modelNode?.childNodes else {
+                        guard let childNodes = modelViewerViewModel.modelNode?.childNodes,
+                              let meshNode = childNodes.filter({ $0.name == "Mesh_grp" }).first else {
                             return
                         }
-                        let meshNodes = childNodes.filter { $0.name == "Mesh_grp" }
-                        let objectNodes = meshNodes.first!.childNodes.filter { $0.name == "Object_grp"}
+                        let objectNodes = meshNode.childNodes.filter { $0.name == "Object_grp"}
                         var flattenedNodes = [SCNNode]()
                         flattenNodes(from: objectNodes, to: &flattenedNodes)
-                        
                         flattenedNodes = flattenedNodes.filter {
                             let isGroup = $0.name?.contains("grp") ?? false
                             return !isGroup
                         }
-                        
-                        nodeTransforms = flattenedNodes.map { $0.simdTransform }
+                        nodeTransforms = flattenedNodes.map { $0.simdWorldTransform }
                         guard let objects = roomCaptureViewModel.capturedRoom?.objects else {
                             return
                         }
@@ -160,3 +165,6 @@ func flattenNodes(from input: [SCNNode], to output: inout [SCNNode]) {
 #Preview {
     ContentView()
 }
+
+
+
